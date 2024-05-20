@@ -1,15 +1,17 @@
 document.addEventListener("keydown", function(event) {
     var dragon = document.getElementById('dragon');
-    if (event.key === "ArrowUp") {
-        if (dragon.style.bottom !== "100px") {
-            dragon.style.bottom = "100px";
+    if (event.code === "Space") {  // Ensures the space bar is the trigger
+        var currentBottom = parseInt(window.getComputedStyle(dragon).bottom, 10);
+        if (currentBottom === 0) {  // Ensures the dragon jumps only if it's at the base level
+            dragon.style.bottom = "150px";  // Increase jump height if needed
             setTimeout(function() {
-                dragon.style.bottom = "0px";
-            }, 500);
+                dragon.style.bottom = "0px";  // Ensures the dragon comes back down
+            }, 600);  // Adjust timing to match the jump duration
         }
     }
 });
 
+// Check for collisions
 setInterval(function() {
     var dragon = document.getElementById('dragon');
     var block = document.getElementById('block');
