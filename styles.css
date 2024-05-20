@@ -1,0 +1,27 @@
+#dragon {
+    position: absolute;
+    bottom: 0;
+    width: 75px;  /* Increased from 50px */
+    height: 75px; /* Increased from 50px */
+    background: url('dragon.png') no-repeat center;
+    background-size: cover;
+    right: 50px;
+}
+
+#block {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background-color: red; /* The block color is red */
+    bottom: 0px; /* The block runs along the bottom of the screen */
+    right: 0px; /* Start from the right side of the screen */
+    animation: moveBlock 4s infinite linear; /* Movement speed is slowed down */
+}
+
+@keyframes moveBlock {
+    from { right: 100%; } /* Start outside the screen on the right */
+    to { right: -30px; } /* End outside the screen on the left */
+}
+
+
+
