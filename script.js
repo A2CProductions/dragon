@@ -1,15 +1,16 @@
-document.addEventListener("keydown", function(event) {
+document.addEventListener("touchstart", function(event) {
     var dragon = document.getElementById('dragon');
-    if (event.key === "ArrowUp") {
-        if (dragon.style.bottom !== "100px") {
-            dragon.style.bottom = "100px";
-            setTimeout(function() {
-                dragon.style.bottom = "0px";
-            }, 500);
-        }
+    var currentBottom = parseInt(window.getComputedStyle(dragon).bottom, 10);
+    if (currentBottom === 0) {  // Ensures the dragon jumps only if it's at the base level
+        dragon.style.bottom = "150px";  // Increase jump height if needed
+        setTimeout(function() {
+            dragon.style.bottom = "0px";  // Ensures the dragon comes back down
+        }, 600);  // Adjust timing to match the jump duration
     }
-});
+    event.preventDefault(); // Prevents any default action triggered by the touch
+}, {passive: false});
 
+// Existing collision detection code remains the same
 setInterval(function() {
     var dragon = document.getElementById('dragon');
     var block = document.getElementById('block');
