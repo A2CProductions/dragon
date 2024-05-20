@@ -22,6 +22,14 @@
     from { right: 100%; } /* Start outside the screen on the right */
     to { right: -30px; } /* End outside the screen on the left */
 }
+#score {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    color: #000;
+    font-size: 24px;
+    font-family: Arial, sans-serif;
+}
 
 
 
