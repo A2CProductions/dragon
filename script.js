@@ -38,9 +38,9 @@ setInterval(function() {
         }, 2000);
 
         if (lives > 0) {
-            alert('You lost a life! Lives remaining: ' + lives);
+            alert('You lost a life! Lives のこぎり: ' + lives);
         } else {
-            alert('Game Over!');
+            alert('へたくそか!ゲームオーバーだぜ');
             block.style.animation = "none";
             block.style.display = "none";
         }
