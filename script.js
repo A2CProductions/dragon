@@ -24,6 +24,19 @@ function jump(condition) {
     }
 }
 
+// Refactor interval to check score and collision separately
+setInterval(function() {
+    var dragon = document.getElementById('dragon');
+    var block = document.getElementById('block');
+    var dragonRect = dragon.getBoundingClientRect();
+    var blockRect = block.getBoundingClientRect();
+
+    // Check if block passed dragon completely
+    if (blockRect.right < dragonRect.left && parseInt(window.getComputedStyle(dragon).bottom, 10) === 0 && !invulnerable) {
+        updateScore(); // Update score when the dragon successfully jumps over the block
+    }
+}, 50); // More frequent checks may improve accuracy
+
 setInterval(function() {
     var dragon = document.getElementById('dragon');
     var block = document.getElementById('block');
@@ -45,12 +58,10 @@ setInterval(function() {
             block.style.animation = "none";
             block.style.display = "none";
         }
-    } else if (blockRect.right < dragonRect.left && currentBottom === 0 && !invulnerable) {
-        updateScore(); // Update score when the dragon successfully jumps over the block
     }
 }, 100);
 
 function updateScore() {
     score++;
-    document.getElementById('score').innerText = 'Score: ' + score; // Display updated score
+    document.getElementById('score').innerText = 'Score: ' + score;
 }
