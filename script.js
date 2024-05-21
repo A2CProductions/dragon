@@ -21,7 +21,7 @@ function jump(condition) {
             document.getElementById('jumpSound').play();  // Play the Mario jump sound
             setTimeout(function() {
                 dragon.style.bottom = "0px";
-            }, 600);
+            }, 1000);
         }
     }
 }
