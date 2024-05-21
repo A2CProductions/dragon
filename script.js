@@ -18,6 +18,7 @@ function jump(condition) {
         var currentBottom = parseInt(window.getComputedStyle(dragon).bottom, 10);
         if (currentBottom === 0) {
             dragon.style.bottom = "150px";
+            document.getElementById('jumpSound').play();  // Play the Mario jump sound
             setTimeout(function() {
                 dragon.style.bottom = "0px";
             }, 600);
