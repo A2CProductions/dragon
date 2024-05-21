@@ -1,6 +1,7 @@
 var lives = 3; // Start with three lives
 var score = 0; // Initialize score
 var invulnerable = false; // Track if the dragon is currently invulnerable
+var lastBlockPassed = false; // Flag to check if the last block has been passed successfully
 
 document.addEventListener("keydown", function(event) {
     jump(event.code === "Space");
@@ -24,19 +25,6 @@ function jump(condition) {
     }
 }
 
-// Refactor interval to check score and collision separately
-setInterval(function() {
-    var dragon = document.getElementById('dragon');
-    var block = document.getElementById('block');
-    var dragonRect = dragon.getBoundingClientRect();
-    var blockRect = block.getBoundingClientRect();
-
-    // Check if block passed dragon completely
-    if (blockRect.right < dragonRect.left && parseInt(window.getComputedStyle(dragon).bottom, 10) === 0 && !invulnerable) {
-        updateScore(); // Update score when the dragon successfully jumps over the block
-    }
-}, 50); // More frequent checks may improve accuracy
-
 setInterval(function() {
     var dragon = document.getElementById('dragon');
     var block = document.getElementById('block');
@@ -52,12 +40,19 @@ setInterval(function() {
         }, 2000);
 
         if (lives > 0) {
-            alert('You lost a life! Lives remaining: ' + lives);
+            alert('のこぎり: ' + lives); // Updated message for losing a life
         } else {
-            alert('Game Over!');
+            alert('へたくそか！ゲームオーバーだぜ'); // Updated message for game over
             block.style.animation = "none";
             block.style.display = "none";
         }
+    } else if (blockRect.right < dragonRect.left && parseInt(window.getComputedStyle(dragon).bottom, 10) === 0 && !invulnerable) {
+        if (!lastBlockPassed) {
+            updateScore(); // Update score when the dragon successfully jumps over the block
+            lastBlockPassed = true;
+        }
+    } else {
+        lastBlockPassed = false; // Reset the flag if the block is still approaching or in collision
     }
 }, 100);
 
